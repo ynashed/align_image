@@ -23,6 +23,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
+    - script: ./free_disk_space.sh
+    target: host
+    condition: not(eq('${{parameters.test_pool_definition.name}}', 'Default'))
+    displayName: Free up disk space
+    
     - name: Check Out Repo
       uses: actions/checkout@v2
       
